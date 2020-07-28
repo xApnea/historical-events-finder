@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "json-server --watch data/db.json"
+    "start": "json-server --watch data/db.json",
+    "build": "webpack -d --watch"
   },
   "repository": {
     "type": "git",
@@ -17,10 +18,21 @@
   },
   "homepage": "https://github.com/xApnea/historical-events-finder#readme",
   "dependencies": {
+    "axios": "^0.19.2",
     "json-server": "^0.16.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-paginate": "^6.3.2",
+    "styled-components": "^5.1.1",
     "webpack": "^4.44.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-react": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-styled-components": "^1.10.7",
+    "nodemon": "^2.0.4",
+    "webpack-cli": "^3.3.12"
   }
 }
