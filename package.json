@@ -1,0 +1,26 @@
+{
+  "name": "historical-events-finder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "json-server --watch data/db.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xApnea/historical-events-finder.git"
+  },
+  "author": "John Bruno",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xApnea/historical-events-finder/issues"
+  },
+  "homepage": "https://github.com/xApnea/historical-events-finder#readme",
+  "dependencies": {
+    "json-server": "^0.16.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-paginate": "^6.3.2",
+    "webpack": "^4.44.0"
+  }
+}
