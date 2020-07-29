@@ -2,8 +2,8 @@ import React from 'react';
 
 function EventList(props) {
   let eventList = props.events.map((event, index) => {
-    console.log(event.description);
-    return <li key={index}>{event.description}</li>
+    console.log(event);
+    return <li key={index}>{`DATE: ${event.date} DESCRIPTION: ${event.description}`}</li>
   });
 
   return(

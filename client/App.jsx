@@ -6,6 +6,7 @@ import SearchBar from './SearchBar.jsx';
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components'
 import axios from 'axios';
+
 import ReactPaginate from 'react-paginate';
 
 // body {
@@ -14,16 +15,15 @@ import ReactPaginate from 'react-paginate';
 //   font-family: 'Bitter', serif;
 // }
 
-// const GlobalStyle = createGlobalStyle`
-//   .pagination {
-//     display: inline-block;
-//     padding-left: 15px;
-//     padding-right: 15px;
-//   }
-//   .pagination li {
-//     display: inline-block;
-//   }
-// `
+const PageinationContainer = styled.div`
+  display: 'flex';
+  flexDirection: 'column';
+  justifyContent: 'center';
+  padding: 20;
+  boxSizing: 'border-box';
+  width: '100%';
+  height: '100%';
+`
 
 
 class App extends React.Component {
@@ -95,19 +95,25 @@ class App extends React.Component {
 
         <EventList events={this.state.events}/>
 
-        <ReactPaginate
-          previousLabel={'previous'}
-          nextLabel={'next'}
-          breakLabel={'...'}
-          breakClassName={'break-me'}
-          pageCount={this.state.pageCount}
-          marginPagesDisplayed={2}
-          pageRangeDisplayed={5}
-          onPageChange={this.handlePageClick}
-          containerClassName={'pagination'}
-          subContainerClassName={'pages pagination'}
-          activeClassName={'active'}
-        />
+        <PageinationContainer>
+          <ReactPaginate
+            previousLabel={'previous'}
+            nextLabel={'next'}
+            nextClassName={'item'}
+            previousClassName={'item'}
+            breakLabel={'...'}
+            breakClassName={'item break-me'}
+            pageClassName={'item'}
+            pageCount={this.state.pageCount}
+            marginPagesDisplayed={2}
+            pageRangeDisplayed={5}
+            onPageChange={this.handlePageClick}
+            containerClassName={'pagination'}
+            subContainerClassName={'item pagination-page'}
+            activeClassName={'item active'}
+            disabledClassName={'disabled-page'}
+          />
+        </PageinationContainer>
 
       </div>
     )
