@@ -8,17 +8,36 @@ import { createGlobalStyle } from 'styled-components'
 import axios from 'axios';
 import ReactPaginate from 'react-paginate';
 
+// body {
+//   background-color: #292d3e;
+//   color: #bebebe;
+//   font-family: 'Bitter', serif;
+// }
+
+// const GlobalStyle = createGlobalStyle`
+//   .pagination {
+//     display: inline-block;
+//     padding-left: 15px;
+//     padding-right: 15px;
+//   }
+//   .pagination li {
+//     display: inline-block;
+//   }
+// `
+
+
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
       events: [],
       pageCount: 2,
-      pageNumber: 1,
+      pageNumber: 0,
       searchTerm: ''
     }
     this.handleSearchChange = this.handleSearchChange.bind(this);
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
+    this.handlePageClick = this.handlePageClick.bind(this);
   }
 
   componentDidMount() {
@@ -29,15 +48,24 @@ class App extends React.Component {
     axios.get(`/events?q=${this.state.searchTerm}&_page=${this.state.pageNumber}&_limit=10`)
       .then((response) => {
         console.log(response);
-        this.setState({events: response.data});
+        const data = response.data;
+        const count = Math.ceil(response.headers['x-total-count'] / 10)
+
+        this.setState({
+          events: data,
+          pageCount: count
+        });
       })
       .catch((error) => {
         console.log(error);
       });
   }
 
-  handlePageClick(event) {
-    console.log('a page was clicked');
+  handlePageClick(page) {
+    const pageNum = page.selected + 1;
+    this.setState({pageNumber: pageNum}, () => {
+      this.retrieveRecords();
+    });
   }
 
   handleSearchChange(event) {
